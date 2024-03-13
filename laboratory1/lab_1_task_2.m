@@ -22,6 +22,7 @@ figure(1)
 plot(t,y);
 xlabel('Time [s]');
 ylabel('Amplitude [-]');
+title('Signal y in time domain');
 
 % Display the amplitude-frequency plot for the frequency range from 0 to
 % the Nyquist frequency by scaling the Fourier transform amplitude
@@ -32,6 +33,7 @@ stem( fv , abs(imag(Y)/length(y)*2));
 xlim([0,(fs/2)]);
 xlabel('Frequency [Hz]');
 ylabel('Amplitude [-]');
+title('Signal y in frequency domain');
 
 % Then, subsample the signal, keeping every second sample from the original
 % signal (y(1:2:end)). Calculate and display the fft result for the new
@@ -49,3 +51,7 @@ stem( fv , abs(Y)/length(y)*2);
 xlim([0,(fs/2)]);
 xlabel('Frequency [Hz]');
 ylabel('Amplitude [-]');
+title('Subsampled signal y in frequency domain');
+subtitle('sampling frequency was reduced by half')
+
+
