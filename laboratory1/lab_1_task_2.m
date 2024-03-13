@@ -11,11 +11,11 @@ A2 = 1;
 f1 = 125; % [Hz]
 f2 = 375; % [Hz]
 
-y = A1*sin(2*pi*f1*t) + A2*sin(2*pi*f2*t);
+y = A1*cos(2*pi*f1*t) + A2*cos(2*pi*f2*t);
 
 Y = fft(y);
 N = length(Y);
-df = fs/N; % frequency resolution
+% df = fs/N; % frequency resolution
 fv = (0:N-1)*fs/N; % frequency vector
 
 figure(1)
@@ -54,4 +54,7 @@ ylabel('Amplitude [-]');
 title('Subsampled signal y in frequency domain');
 subtitle('sampling frequency was reduced by half')
 
+%% Signal Y1 consisting of a sum of two sine waves of frequencies of 125 and 375 Hz
 
+y1 = A1*sin(2*pi*f1*t) + A2*sin(2*pi*f2*t);
+y2 = A1*cos(2*pi*f1*t) - A2*cos(2*pi*f2*t);

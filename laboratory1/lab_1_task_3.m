@@ -53,4 +53,5 @@ Y2_fft_dB = 20 * log10(Y2_mag);
 
 semilogx(fv, Y2_fft_dB); % displaying second signal on the same graph
 legend('y1', 'y2');
-
+title('Comparison of plain y1 signal vs. windowed y2');
+save_fig2png(gcf,[16 9], 'lab_1_task_3_fig_1')
