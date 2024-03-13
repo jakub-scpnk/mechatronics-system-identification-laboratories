@@ -55,3 +55,22 @@ semilogx(fv, Y2_fft_dB); % displaying second signal on the same graph
 legend('y1', 'y2');
 title('Comparison of plain y1 signal vs. windowed y2');
 save_fig2png(gcf,[16 9], 'lab_1_task_3_fig_1')
+
+%% Third step
+
+y3 = y1 .* blackman(length(y1))';
+
+% Calculating fft
+Y3 = fft(y3);
+
+Y3_mag = (Y3(1:N/2 + 1)); % Extracting magnitudes of positive component up
+                          % to Nyquist frequency
+
+% Convert magnitude to dB (log scale)
+Y3_fft_dB = 20 * log10(Y3_mag);
+
+semilogx(fv, Y3_fft_dB); % displaying second signal on the same graph
+legend('y1', 'y2', 'y3');
+title('Comparison of plain y1 signal vs. hann windowed y2');
+subtitle('vs. blackman windowed y3');
+save_fig2png(gcf,[16 9], 'lab_1_task_3_fig_2')
