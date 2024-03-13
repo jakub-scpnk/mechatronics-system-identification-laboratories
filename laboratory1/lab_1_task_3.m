@@ -31,8 +31,8 @@ Y_fft_dB = 20 * log10(Y_mag);
 % Plot the spectrum on a logarithmic scale
 figure;
 semilogx(fv, Y_fft_dB); % semilogx - x axis has a log scale
-xlabel('Frequency (Hz)');
-ylabel('Magnitude (dB)');
+xlabel('Frequency [Hz]');
+ylabel('Magnitude [dB]');
 xlim([0,(fs/2)]);
 grid on;
 hold on;
