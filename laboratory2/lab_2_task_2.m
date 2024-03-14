@@ -53,3 +53,4 @@ plot(t1,y1,'-.');
 xlim([0,1]);
 legend('original signal', 'signal after filtration');
 hold off;
+
