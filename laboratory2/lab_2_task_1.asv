@@ -64,14 +64,3 @@ legend('filtfilt function', 'filter with time reversal');
 
 %% Task 1.3
 
-h1 = rectwin(11);
-h1 = h1/(length(h1));
-h2 = rectwin(51);
-h2 = h2/(length(h2));
-
-figure()
-freqz(h1,1,length(h1)*2,fs)
-
-figure()
-freqz(h2,1,length(h2)*2,fs)
-
