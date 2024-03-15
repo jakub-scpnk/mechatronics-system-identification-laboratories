@@ -51,6 +51,29 @@ hold on;
 
 plot(t1,y1,'-.');
 xlim([0,1]);
-legend('original signal', 'signal after filtration');
+legend('original signal', 'signal after FIR filtration');
 hold off;
 
+%% Task 2.2
+
+load Hd2.mat % Loading prepared IIR filter
+y2 = filter(Hd1.Numerator,1,y);
+
+% The filtered signal is shifted by the length of the numerator of filter,
+% so we need to account for that:
+t1 = t-(length(Hd1.Numerator)/fs)/2;
+
+figure()
+plot(t,y);
+title('Signal after filtering out the high frequency component');
+xlabel('time [s]');
+ylabel('amplitude [-]');
+grid on;
+hold on;
+
+plot(t1,y2,'-.');
+plot(t1,y1,'-.');
+xlim([0,1]);
+legend('original signal', 'signal after IIR filtration', ...
+    'signal after FIR filtration');
+hold off;
