@@ -32,6 +32,8 @@ xlabel('time [s]');
 ylabel('amplitude [-]');
 grid on;
 
+plotFFT(y,fs);
+
 %% Task 2.1
 
 load Hd1.mat % Loading prepared FIR filter
