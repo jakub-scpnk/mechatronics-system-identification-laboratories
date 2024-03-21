@@ -32,7 +32,8 @@ xlabel('time [s]');
 ylabel('amplitude [-]');
 grid on;
 
-plotFFT(y,fs);
+save_fig2png(gcf,[16 9], 'lab_2_task_2_fig_1');
+% plotFFT(y,fs);
 
 %% Task 2.1
 
@@ -56,14 +57,16 @@ xlim([0,1]);
 legend('original signal', 'signal after FIR filtration');
 hold off;
 
+save_fig2png(gcf,[16 9], 'lab_2_task_2_fig_2');
+
 %% Task 2.2
 
 load Hd2.mat % Loading prepared IIR filter
-y2 = filter(Hd1.Numerator,1,y);
+% Extract numerator and denominator coefficients
+[Num, Den] = sos2tf(Hd2.sosMatrix, Hd2.ScaleValues);
 
-% The filtered signal is shifted by the length of the numerator of filter,
-% so we need to account for that:
-t1 = t-(length(Hd1.Numerator)/fs)/2;
+% Apply zero-phase filtration using the extracted coefficients
+y2 = filtfilt(Num, Den, y);
 
 figure()
 plot(t,y);
@@ -73,9 +76,11 @@ ylabel('amplitude [-]');
 grid on;
 hold on;
 
-plot(t1,y2,'-.');
+plot(t,y2,'-.');
 plot(t1,y1,'-.');
 xlim([0,1]);
 legend('original signal', 'signal after IIR filtration', ...
     'signal after FIR filtration');
 hold off;
+
+save_fig2png(gcf,[16 9], 'lab_2_task_2_fig_3');
