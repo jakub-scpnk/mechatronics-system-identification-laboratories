@@ -101,4 +101,58 @@ legend('f1 = 30, f2 = 100', 'corr result','f1 = 30, f2 = 200', ...
     'corr result', 'f1 = 30, f2 = 500', 'corr result', 'Location', ...
     'northwest');
 
+%% Task 1.3
+
+clear lag tc;
+
+fs = 2000;      % sampling frequency [Hz]
+N = 1000;       % number of samples [-]
+t = (0:N-1)/fs; % time vector [s]
+
+f1 = 50; % [Hz]
+f2 = 500; % [Hz]
+
+A1 = 1; % amplitude starting at 500th sample
+A2 = 0.5; % amplitude starting at 750th sample
+
+Np = 250;
+tp = (0:Np-1)/fs; % chirp time vector [s]
+
+y0 = zeros(500,1);
+y1 = A1*chirp(tp,f1,tp(end),f2);
+y2 = A2*chirp(tp,f1,tp(end),f2);
+
+yp = [y0', y1, y2];
+yp = yp';
+
+y3 = y + yp;
+
+figure('Name','Task 1.3: Created signal' ,'NumberTitle','off')
+plot(t,y3)
+grid on
+title('Created signal "y"');
+xlabel('time [s]'); ylabel('amplitude [-]');
+
+[yc,lag] = xcorr(y,yp);
+tc = lag/fs; % time vector for lag signal
+
+%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
+%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
+%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
+%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
+%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
+
+% 1. What is going on?
+% 2. In red part (what report should include) there is a senstence about
+% matched filter and theres nothing about it in the task
+
+figure('Name','Task 1.3: Correlation' ,'NumberTitle','off')
+%plot(t,y3)
+%hold on;
+plot(tc,yc)
+grid on
+title('Correlation');
+xlabel('time [s]'); ylabel('normalized amplitude [-]');
+
+%% Task 1.4
 
