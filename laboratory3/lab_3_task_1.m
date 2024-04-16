@@ -43,6 +43,7 @@ grid on
 xlabel('time [s]'); ylabel('normalized amplitude [-]');
 legend('original signal', 'correlation','Location','northwest');
 title('Result of correlation');
+save_fig2png(gcf,[16 9], 'lab_3_task_1_fig_1');
 
 figure('Name','Task 1.1: Convolution' ,'NumberTitle','off')
 plot(t,y)
@@ -52,6 +53,7 @@ grid on
 xlabel('time [s]'); ylabel('amplitude [-]');
 legend('original signal', 'convolution','Location','northwest');
 title('Result of convolution');
+save_fig2png(gcf,[16 9], 'lab_3_task_1_fig_2');
 
 %% Task 1.2
 
@@ -101,6 +103,8 @@ legend('f1 = 30, f2 = 100', 'corr result','f1 = 30, f2 = 200', ...
     'corr result', 'f1 = 30, f2 = 500', 'corr result', 'Location', ...
     'northwest');
 
+save_fig2png(gcf,[16 9], 'lab_3_task_1_fig_3');
+
 %% Task 1.3
 
 clear lag tc;
@@ -132,19 +136,10 @@ plot(t,y3)
 grid on
 title('Created signal "y"');
 xlabel('time [s]'); ylabel('amplitude [-]');
+save_fig2png(gcf,[16 9], 'lab_3_task_1_fig_4');
 
 [yc,lag] = xcorr(y,yp);
 tc = lag/fs; % time vector for lag signal
-
-%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
-%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
-%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
-%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
-%%%%%%%%% ASK QUESTION ASK QUESTION ASK QUESTION
-
-% 1. What is going on?
-% 2. In red part (what report should include) there is a senstence about
-% matched filter and theres nothing about it in the task
 
 figure('Name','Task 1.3: Correlation' ,'NumberTitle','off')
 %plot(t,y3)
@@ -153,6 +148,24 @@ plot(tc,yc)
 grid on
 title('Correlation');
 xlabel('time [s]'); ylabel('normalized amplitude [-]');
+save_fig2png(gcf,[16 9], 'lab_3_task_1_fig_5');
 
 %% Task 1.4
 
+figure('Name','Task 1.4: Correlation' ,'NumberTitle','off')
+
+for amp = [0.5, 1, 2]
+    szum = amp*randn(1,length(y));
+    yn = y + szum';
+
+    [yc,lag] = xcorr(yn,yp);
+    tc = lag/fs; % time vector for lag signal
+
+    plot(tc,yc); hold on;
+end
+grid on
+title('Correlation');
+xlabel('time [s]'); ylabel('normalized amplitude [-]');
+legend('amp = 0.5','amp = 1','amp = 2');
+
+save_fig2png(gcf,[16 9], 'lab_3_task_1_fig_6');
