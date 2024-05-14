@@ -60,6 +60,8 @@ tmodalResults = table(modeID.',resModal.NaturalFrequencies/(2*pi));
 tmodalResults.Properties.VariableNames = {'Mode','Frequency'};
 disp(tmodalResults)
 
+save('lab_8_task_1_workspace.mat')
+
 % animation
 ModeNumber = 1;
 FrameRate = 30;
