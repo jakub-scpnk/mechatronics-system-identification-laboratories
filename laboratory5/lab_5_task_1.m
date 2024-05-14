@@ -51,12 +51,12 @@ ylabel('Phase [deg]');
 title('Phase Bode Plot');
 xlim([10^4 10^7]);
 
-save_fig2png(gcf,[16 9], 'lab_5_task_1_fig_1');
+save_fig2png(gcf,[16 9], 'figures/lab_5_task_1_fig_1');
 
 % Displaying bode plot with built in function
 figure;
 bode(SYS)
-save_fig2png(gcf,[16 9], 'lab_5_task_1_fig_2');
+save_fig2png(gcf,[16 9], 'figures/lab_5_task_1_fig_2');
 
 % Calculating damping factor
 
@@ -88,6 +88,7 @@ dt = 1/1e6; % [s]
 
 
 for R = [5, 10, 100] % [Ohm]
+    R = R;
     num = [L 0];       % transfer function numerator
     den = [R*L*C L R]; % transfer function denominator
 
@@ -96,8 +97,8 @@ for R = [5, 10, 100] % [Ohm]
 
     % Displaying bode plot with built in function
     figure('Name', ['Bode plot R =', num2str(R)])
-    bode(SYS)
-    save_fig2png(gcf,[16 9], ['lab_5_task_1_bode_r_', num2str(R)]);
+    bode(SYS); grid on;
+    %save_fig2png(gcf,[16 9], ['figures/lab_5_task_1_bode_r_', num2str(R)]);
 
     % Calculating damping factor
 
@@ -115,9 +116,8 @@ for R = [5, 10, 100] % [Ohm]
     omega_1 = interp1(20*log10(mag), omega, -3);  % Bandwidth frequency
     zeta_half_power = 1 / sqrt(1 + (omega_1/(2*omega_d))^2);
 
-    fprintf('For resistance R = %d \n', R)
+    fprintf('\nFor resistance R = %d \n', R)
     fprintf('\nDimensionless damping factor (log method): %.4f', zeta_log)
     fprintf('\nDimensionless damping factor (half-power method): %.9f', ...
         zeta_half_power);
-
 end
